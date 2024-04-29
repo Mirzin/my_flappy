@@ -26,7 +26,7 @@ private:
     Rectangle bottomPipeDest{};
     Rectangle bottomPipeEndDest{};
     float scale{4.f};
-    float speed{200};
+    float speed{250};
     float xPos;
     int pipeHeight{0};
 };
