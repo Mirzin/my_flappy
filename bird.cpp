@@ -30,13 +30,13 @@ void Bird::drawBird(int windowHeight, float dT)
     source.x = (static_cast<float>(texture.width) / 4) * currentFrame;
 
     DrawTexturePro(texture, source, dest, Vector2{}, 0.f, WHITE);
-    // DrawRectangleLines(dest.x + 10, dest.y + 10, dest.width - 10, dest.height - 10, RED);
+    // DrawRectangleLines(dest.x + 10, dest.y + 10, dest.width - 20, dest.height - 20, RED);
 }
 
 Rectangle Bird::getCollisionRec()
 {
     return Rectangle{
-        dest.x + 10, dest.y + 10, dest.width - 10, dest.height - 10};
+        dest.x + 10, dest.y + 10, dest.width - 20, dest.height - 20};
 }
 
 void Bird::reset()
