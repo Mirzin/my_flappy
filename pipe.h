@@ -16,7 +16,12 @@ private:
         pipeEndHeight,
         static_cast<float>(texture.width) / 4.f,
         (static_cast<float>(texture.height) / 2.f) - 2 * pipeEndHeight};
-    Rectangle pipeEndSource{
+    Rectangle topPipeEndSource{
+        0.f,
+        0.f,
+        static_cast<float>(texture.width) / 4.f,
+        -1.f * pipeEndHeight};
+    Rectangle bottomPipeEndSource{
         0.f,
         0.f,
         static_cast<float>(texture.width) / 4.f,

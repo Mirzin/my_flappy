@@ -27,11 +27,11 @@ void Pipe::drawPipe(int windowWidth, int windowHeight, float dT)
         pipeEndHeight * scale};
 
     DrawTexturePro(texture, pipeSource, topPipeDest, Vector2{}, 0.f, WHITE);
-    DrawTexturePro(texture, pipeEndSource, topPipeEndDest, Vector2{}, 0.f, WHITE);
+    DrawTexturePro(texture, topPipeEndSource, topPipeEndDest, Vector2{}, 0.f, WHITE);
     // DrawRectangleLines(topPipeDest.x, topPipeDest.y, topPipeDest.width, topPipeDest.height + topPipeEndDest.height, RED);
 
     DrawTexturePro(texture, pipeSource, bottomPipeDest, Vector2{}, 0.f, WHITE);
-    DrawTexturePro(texture, pipeEndSource, bottomPipeEndDest, Vector2{}, 0.f, WHITE);
+    DrawTexturePro(texture, bottomPipeEndSource, bottomPipeEndDest, Vector2{}, 0.f, WHITE);
     // DrawRectangleLines(bottomPipeDest.x, bottomPipeDest.y - bottomPipeEndDest.height, bottomPipeDest.width, bottomPipeDest.height + bottomPipeEndDest.height, RED);
 
     xPos -= speed * dT;

@@ -50,6 +50,8 @@ int main()
             {
                 gameOver = false;
                 bird.reset();
+                for (int i = 0; i < noOfPipes; i++)
+                    pipes[i].setXpos(windowWidth + (500 * i));
             }
         }
 
