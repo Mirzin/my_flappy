@@ -2,39 +2,25 @@
 
 void Pipe::drawPipe(int windowWidth, int windowHeight, float dT)
 {
-    float pipeEndHeight{16.f};
-
-    Rectangle pipeSource{
-        0.f,
-        pipeEndHeight,
-        static_cast<float>(texture.width) / 4.f,
-        (static_cast<float>(texture.height) / 2.f) - 2 * pipeEndHeight};
-
-    Rectangle pipeEndSource{
-        0.f,
-        0.f,
-        static_cast<float>(texture.width) / 4.f,
-        pipeEndHeight};
-
-    Rectangle topPipeDest{
+    topPipeDest = {
         xPos,
         0,
         (texture.width / 4 * scale),
-        (texture.height / 2 * scale) - (2 * pipeEndHeight)};
+        (texture.height / 2 * scale) - (2 * pipeEndHeight) - pipeHeight};
 
-    Rectangle topPipeEndDest{
+    topPipeEndDest = {
         xPos,
         topPipeDest.height,
         texture.width / 4 * scale,
         (pipeEndHeight * scale)};
 
-    Rectangle bottomPipeDest{
+    bottomPipeDest = {
         xPos,
-        (windowHeight - texture.height / 2 * scale) + (5.f * pipeEndHeight),
+        (windowHeight - texture.height / 2 * scale) + (5.f * pipeEndHeight) - pipeHeight,
         texture.width / 4 * scale,
-        (texture.height / 2 * scale) - (5.f * pipeEndHeight)};
+        (texture.height / 2 * scale) - (5.f * pipeEndHeight) + pipeHeight};
 
-    Rectangle bottomPipeEndDest{
+    bottomPipeEndDest = {
         xPos,
         bottomPipeDest.y - (pipeEndHeight * scale),
         texture.width / 4 * scale,
@@ -50,10 +36,30 @@ void Pipe::drawPipe(int windowWidth, int windowHeight, float dT)
 
     xPos -= speed * dT;
     if (xPos < 0.f - topPipeDest.width)
+    {
         setXpos(windowWidth);
+        pipeHeight = GetRandomValue(-200, 250);
+    }
 }
 
 void Pipe::setXpos(int windowWidth)
 {
     xPos = static_cast<float>(windowWidth);
+}
+
+Rectangle Pipe::getTopPipeCollisionRec()
+{
+    return Rectangle{
+        topPipeDest.x,
+        topPipeDest.y,
+        topPipeDest.width,
+        topPipeDest.height + topPipeEndDest.height};
+}
+Rectangle Pipe::getBottomPipeCollisionRec()
+{
+    return Rectangle{
+        bottomPipeDest.x,
+        bottomPipeDest.y - bottomPipeEndDest.height,
+        bottomPipeDest.width,
+        bottomPipeDest.height + bottomPipeEndDest.height};
 }
