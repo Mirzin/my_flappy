@@ -24,7 +24,7 @@ int main()
     for (int i = 0; i < noOfPipes; i++)
         pipes[i].setXpos(windowWidth + (500 * i));
 
-    SetTargetFPS(200);
+    SetTargetFPS(60);
     while (!WindowShouldClose())
     {
         BeginDrawing();
