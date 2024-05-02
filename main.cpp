@@ -14,6 +14,7 @@ int main()
 
     Background background;
     Sound backgroundAudio{LoadSound("assets/wind.mp3")};
+    Sound gameOverAudio{LoadSound("assets/game_over.mp3")};
     Bird bird;
     const int noOfPipes{3};
     Pipe pipes[noOfPipes];
@@ -37,16 +38,20 @@ int main()
         for (int i = 0; i < noOfPipes; i++)
         {
             pipes[i].drawPipe(windowWidth, windowHeight, dT, gameOver);
-            if (CheckCollisionRecs(pipes[i].getBottomPipeCollisionRec(), bird.getCollisionRec()) || CheckCollisionRecs(pipes[i].getTopPipeCollisionRec(), bird.getCollisionRec()))
+            if (!gameOver && (CheckCollisionRecs(pipes[i].getBottomPipeCollisionRec(), bird.getCollisionRec()) || CheckCollisionRecs(pipes[i].getTopPipeCollisionRec(), bird.getCollisionRec())))
             {
                 gameOver = true;
+                PlaySound(gameOverAudio);
                 break;
             }
         }
         if (!gameOver)
         {
             if (bird.getCollisionRec().y > windowHeight || bird.getCollisionRec().y < 0)
+            {
+                PlaySound(gameOverAudio);
                 gameOver = true;
+            }
         }
         else
         {
@@ -62,5 +67,7 @@ int main()
 
         EndDrawing();
     }
+    UnloadSound(backgroundAudio);
+    UnloadSound(gameOverAudio);
     CloseWindow();
 }
