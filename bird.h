@@ -3,19 +3,15 @@
 class Bird
 {
 public:
+    Bird();
     void tick(int windowHeight, float dT, bool gameOver);
     Rectangle getCollisionRec();
     void reset();
-
+    int getXpos();
 private:
-    Texture2D texture{LoadTexture("assets/Bird.png")};
-    Sound sound{LoadSound("assets/jump.mp3")};
-    Rectangle source{
-        0.f,
-        static_cast<float>(texture.height) / 7,
-        static_cast<float>(texture.width) / 4,
-        static_cast<float>(texture.height) / 7,
-    };
+    Texture2D texture;
+    Sound sound;
+    Rectangle source;
     Rectangle dest{};
     float destYpos{5.f};
     int maxFrames{4};

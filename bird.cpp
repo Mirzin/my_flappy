@@ -1,5 +1,18 @@
 #include "bird.h"
 
+Bird::Bird()
+{
+    texture = LoadTexture("assets/Bird.png");
+    sound = LoadSound("assets/jump.mp3");
+    SetSoundVolume(sound, 0.2f);
+    source = Rectangle{
+        0.f,
+        static_cast<float>(texture.height) / 7,
+        static_cast<float>(texture.width) / 4,
+        static_cast<float>(texture.height) / 7,
+    };
+}
+
 void Bird::tick(int windowHeight, float dT, bool gameOver)
 {
     if (!gameOver)
@@ -50,4 +63,9 @@ void Bird::reset()
 {
     destYpos = 5.f;
     velocity = 0;
+}
+
+int Bird::getXpos()
+{
+    return static_cast<int>(dest.x);
 }

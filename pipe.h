@@ -7,7 +7,7 @@ public:
     void setXpos(int windowWidth);
     Rectangle getTopPipeCollisionRec();
     Rectangle getBottomPipeCollisionRec();
-
+    int getScoreBarrier();
 private:
     Texture2D texture{LoadTexture("assets/Pipes.png")};
     float pipeEndHeight{16.f};

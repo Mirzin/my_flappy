@@ -66,3 +66,8 @@ Rectangle Pipe::getBottomPipeCollisionRec()
         bottomPipeDest.width,
         bottomPipeDest.height + bottomPipeEndDest.height};
 }
+
+int Pipe::getScoreBarrier()
+{
+    return static_cast<int>(topPipeEndDest.x) + static_cast<int>(topPipeEndDest.width);
+}
