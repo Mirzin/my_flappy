@@ -70,7 +70,7 @@ int main()
             DrawRectangle(windowWidth / 2 - 275, windowHeight / 2 - 55, 550, 100, BLACK);
             DrawRectangle(windowWidth / 2 - 270, windowHeight / 2 - 50, 540, 90, WHITE);
             DrawText("GAME OVER!", windowWidth / 2 - 250, windowHeight / 2 - 40, 80, RED);
-            if (IsKeyPressed(KEY_ENTER))
+            if (IsKeyPressed(KEY_ENTER) || IsKeyPressed(KEY_SPACE))
             {
                 gameOver = false;
                 bird.reset();

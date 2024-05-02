@@ -8,6 +8,7 @@ public:
     Rectangle getCollisionRec();
     void reset();
     int getXpos();
+
 private:
     Texture2D texture;
     Sound sound;
@@ -21,6 +22,6 @@ private:
     float updateTime{1.f / 12.f};
     float gravity{1000.f};
     float velocity{0.f};
-    float jumpVelocity{-65000.f};
+    float jumpVelocity{-20000.f};
     void drawBird(int windowHeight, float dT, bool gameOver);
 };
