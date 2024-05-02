@@ -3,7 +3,7 @@
 class Pipe
 {
 public:
-    void drawPipe(int windowWidth, int windowHeight, float dT);
+    void drawPipe(int windowWidth, int windowHeight, float dT, bool gameOver);
     void setXpos(int windowWidth);
     Rectangle getTopPipeCollisionRec();
     Rectangle getBottomPipeCollisionRec();

@@ -10,8 +10,10 @@ int main()
     int windowHeight{768};
     bool gameOver{false};
     InitWindow(windowWidth, windowHeight, "Flappy");
+    InitAudioDevice();
 
     Background background;
+    Sound backgroundAudio{LoadSound("assets/wind.mp3")};
     Bird bird;
     const int noOfPipes{3};
     Pipe pipes[noOfPipes];
@@ -23,23 +25,26 @@ int main()
         BeginDrawing();
         ClearBackground(WHITE);
 
+        if (!IsSoundPlaying(backgroundAudio))
+            PlaySound(backgroundAudio);
+
         const float dT{GetFrameTime()};
 
         background.tick(dT, mapScale);
+
+        bird.tick(windowHeight, dT, gameOver);
+
+        for (int i = 0; i < noOfPipes; i++)
+        {
+            pipes[i].drawPipe(windowWidth, windowHeight, dT, gameOver);
+            if (CheckCollisionRecs(pipes[i].getBottomPipeCollisionRec(), bird.getCollisionRec()) || CheckCollisionRecs(pipes[i].getTopPipeCollisionRec(), bird.getCollisionRec()))
+            {
+                gameOver = true;
+                break;
+            }
+        }
         if (!gameOver)
         {
-
-            bird.tick(windowHeight, dT);
-
-            for (int i = 0; i < noOfPipes; i++)
-            {
-                pipes[i].drawPipe(windowWidth, windowHeight, dT);
-                if (CheckCollisionRecs(pipes[i].getBottomPipeCollisionRec(), bird.getCollisionRec()) || CheckCollisionRecs(pipes[i].getTopPipeCollisionRec(), bird.getCollisionRec()))
-                {
-                    gameOver = true;
-                    break;
-                }
-            }
             if (bird.getCollisionRec().y > windowHeight || bird.getCollisionRec().y < 0)
                 gameOver = true;
         }

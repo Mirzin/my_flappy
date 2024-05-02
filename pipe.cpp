@@ -1,6 +1,6 @@
 #include "pipe.h"
 
-void Pipe::drawPipe(int windowWidth, int windowHeight, float dT)
+void Pipe::drawPipe(int windowWidth, int windowHeight, float dT, bool gameOver)
 {
     topPipeDest = {
         xPos,
@@ -34,11 +34,14 @@ void Pipe::drawPipe(int windowWidth, int windowHeight, float dT)
     DrawTexturePro(texture, bottomPipeEndSource, bottomPipeEndDest, Vector2{}, 0.f, WHITE);
     // DrawRectangleLines(bottomPipeDest.x, bottomPipeDest.y - bottomPipeEndDest.height, bottomPipeDest.width, bottomPipeDest.height + bottomPipeEndDest.height, RED);
 
-    xPos -= speed * dT;
-    if (xPos < 0.f - topPipeDest.width)
+    if (!gameOver)
     {
-        setXpos(windowWidth);
-        pipeHeight = GetRandomValue(-200, 250);
+        xPos -= speed * dT;
+        if (xPos < 0.f - topPipeDest.width)
+        {
+            setXpos(windowWidth);
+            pipeHeight = GetRandomValue(-200, 250);
+        }
     }
 }
 

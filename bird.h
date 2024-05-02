@@ -3,12 +3,13 @@
 class Bird
 {
 public:
-    void tick(int windowHeight, float dT);
+    void tick(int windowHeight, float dT, bool gameOver);
     Rectangle getCollisionRec();
     void reset();
 
 private:
     Texture2D texture{LoadTexture("assets/Bird.png")};
+    Sound sound{LoadSound("assets/jump.mp3")};
     Rectangle source{
         0.f,
         static_cast<float>(texture.height) / 7,
@@ -25,5 +26,5 @@ private:
     float gravity{1000.f};
     float velocity{0.f};
     float jumpVelocity{-65000.f};
-    void drawBird(int windowHeight, float dT);
+    void drawBird(int windowHeight, float dT, bool gameOver);
 };
